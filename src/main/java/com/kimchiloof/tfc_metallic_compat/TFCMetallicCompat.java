@@ -31,12 +31,18 @@ public class TFCMetallicCompat {
 
     public TFCMetallicCompat()
     {
+        IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
+        // Register mod items/blocks/generation
+
+
         // Register the setup method for modloading
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
-        // Register the enqueueIMC method for modloading
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
-        // Register the processIMC method for modloading
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
+        eventBus.addListener(this::setup);
+        eventBus.addListener(this::enqueueIMC);
+        eventBus.addListener(this::processIMC);
+
+        // Configs
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, TFCMetallicCompatCommonConfigs.SPEC, mod_id + "-common.toml");
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
