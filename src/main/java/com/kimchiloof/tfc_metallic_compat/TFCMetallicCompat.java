@@ -22,9 +22,9 @@ import org.slf4j.Logger;
 import java.util.stream.Collectors;
 
 // The value here should match an entry in the META-INF/mods.toml file
-@Mod(TFCMetallicCompat.mod_id)
+@Mod(TFCMetallicCompat.MOD_ID)
 public class TFCMetallicCompat {
-    public static final String mod_id = "tfc_metallic_compat";
+    public static final String MOD_ID = "tfc_metallic_compat";
 
     // Directly reference a slf4j logger
     private static final Logger LOGGER = LogUtils.getLogger();
@@ -42,7 +42,7 @@ public class TFCMetallicCompat {
         eventBus.addListener(this::processIMC);
 
         // Configs
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, TFCMetallicCompatCommonConfigs.SPEC, mod_id + "-common.toml");
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, TFCMetallicCompatCommonConfigs.SPEC, MOD_ID + "-common.toml");
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
